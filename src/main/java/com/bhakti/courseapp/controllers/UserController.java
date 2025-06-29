@@ -1,7 +1,6 @@
 package com.bhakti.courseapp.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bhakti.courseapp.payloads.ApiResponse;
 import com.bhakti.courseapp.payloads.UserDto;
 import com.bhakti.courseapp.services.UserService;
 
@@ -44,7 +44,7 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable("id") int uid) {
 		userService.deleteUserByUserId(uid);
-		return new ResponseEntity(Map.of("message", "User deleted successfully"), HttpStatus.OK);
+		return new ResponseEntity<>(new ApiResponse("User deleted successfully...", true), HttpStatus.OK);
 	}
 
 	// Get User
