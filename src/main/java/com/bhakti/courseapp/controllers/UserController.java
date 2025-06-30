@@ -18,6 +18,8 @@ import com.bhakti.courseapp.payloads.ApiResponse;
 import com.bhakti.courseapp.payloads.UserDto;
 import com.bhakti.courseapp.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -27,7 +29,7 @@ public class UserController {
 
 	// Create User
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user) {
 
 		UserDto userDto = userService.createUser(user);
 		return new ResponseEntity<>(userDto, HttpStatus.CREATED);
@@ -35,7 +37,7 @@ public class UserController {
 
 	// Update User
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable("id") int id) {
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto user, @PathVariable("id") int id) {
 		UserDto updatedUser = userService.updateUser(user, id);
 		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 	}

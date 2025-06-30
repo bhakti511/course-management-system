@@ -23,13 +23,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@NotNull
 	private String name;
 	
-	@Email
 	private String email;
 	
-	@Size(min = 8)
 	private String password;
 	
 }
